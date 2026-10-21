@@ -1,9 +1,15 @@
 name: Build and Test
 
+# For push and pull_request, this workflow is skipped only when all changed
+# files are within docs/development/. Changes anywhere else still run CI.
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - 'docs/development/**'
   pull_request:
+    paths-ignore:
+      - 'docs/development/**'
 
 permissions:
   contents: read
