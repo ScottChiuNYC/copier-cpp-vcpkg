@@ -84,7 +84,11 @@ def main():
     assert template_ci["on"]["push"] is None and template_ci["on"]["pull_request"] is None
     assert "paths-ignore" not in template_ci["on"]
     assert "docs/development/" in (project / "README.md").read_text(encoding="utf-8")
-    assert (project / "docs/development/PROJECT_SKELETON_CONTRACT.md").is_file()
+    skeleton_contract = project / "docs/development/PROJECT_SKELETON_CONTRACT.md"
+    assert skeleton_contract.is_file()
+    rendered_contract = skeleton_contract.read_text(encoding="utf-8")
+    assert "{{" not in rendered_contract and "{%" not in rendered_contract
+    assert "ci_sample" in rendered_contract and "ci-packaged-library" in rendered_contract
 
     config = json.loads((project / "vcpkg-configuration.json").read_text(encoding="utf-8"))
     assert config["default-registry"]["repository"] == "https://github.com/microsoft/vcpkg"

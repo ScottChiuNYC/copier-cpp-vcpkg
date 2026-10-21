@@ -15,6 +15,8 @@ Requires Python 3.12+, Git and a platform C++17 toolchain (GCC/Clang on Linux; V
 
 The scripts supply tool paths automatically, including Ninja inside vcpkg compiler detection. Compiler tracking remains enabled. No shell activation or manual path setup is required.
 
+Before adding implementations, dependencies or tests, read [`docs/development/PROJECT_SKELETON_CONTRACT.md`](docs/development/PROJECT_SKELETON_CONTRACT.md) for the generated repository's source layout, build/packaging boundary and test/CI conventions. The domain Essence governs the library's required behavior.
+
 ## Build presets
 
 Validation uses `windows-vcpkg` / `windows-release` / `windows-release-tests` on Windows and `linux-vcpkg-release` / `linux-release` / `linux-release-tests` on Linux. Windows uses Visual Studio 2022; Linux uses Ninja. `CMakePresets.json` also contains Debug presets. Keep preset changes aligned with `scripts/validate.py`.
