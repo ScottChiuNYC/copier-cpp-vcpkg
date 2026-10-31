@@ -56,3 +56,11 @@ The template repository's own `.github/workflows/template-acceptance.yml` contin
 ## 6. Interface with the domain Essence
 
 Domain requirements can name logical components, public APIs, mathematical conditions, dependencies or tests. Map them onto the skeleton directories and targets above. Do not interpret silence in the Essence as authorization to introduce unrelated architectures, performance requirements, numerical thresholds or project infrastructure. If an Essence requirement genuinely conflicts with this contract, surface the conflict and record a deliberate resolution rather than silently changing either authority.
+
+## 7. Coding standards (no mandatory formatting)
+
+Use the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) for new or materially edited code, including C++ public interfaces, tests, examples and client code. Favor 2-space indentation, Google naming, braces, include ordering and documentation; keep intentionally aligned numerical matrices/tables when clearer.
+
+Compatibility exceptions: the skeleton's existing `.cpp` file layout, C++{{ cpp_standard }} baseline, existing public `HelloWorld()` example ABI, and exception behavior must not be changed in a cosmetic migration. New source filenames should initially follow the existing CMake, package and consumer integration conventions; a deliberate `.cc` migration needs coordinated CMake/test/packaging changes. Preserve existing code's published interfaces; style is not an excuse to silently rewrite the frozen Essence.
+
+**No automatic formatting or mandatory formatter CI.** clang-format may be used manually as an opt-in reference, not run automatically by agents. Non-mutating lint can aid review, but do not introduce a blanket style gate or mass-reformat legacy files. Apply style to code you actually change; keep unrelated diffs out of Copier updates. ICC and C2C must apply this project-local policy to any generated code while treating it as a Project Boundary convention, not an additional domain acceptance criterion.
